@@ -2,10 +2,13 @@ version: '3.7'
 
 services:
   jupyter:
+    container_name: inaturalist-notebook
     build:
       context: .
       network: host
     container_name: jupyter
+    ports:
+      - 8888:8888
     volumes:
       # Mount the current directory as the Jupyter workspace
       - .:/home/jovyan/work
