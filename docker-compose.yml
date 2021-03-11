@@ -14,9 +14,15 @@ services:
       - .:/home/jovyan/work
       # Or mount your own workspace path
       # - /home/username/workspace:/home/jovyan/work
+      # Optional: mount a local Jupyter config dir
+      # - ${HOME}/.jupyter:/home/jovyan/.jupyter
     restart: unless-stopped
-    # Set user and group IDs, if needed
-    # user: 'root'
     # environment:
-    #   NB_UID: 1000
-    #   NB_GID: 1000
+      # Set any value here to use as a token instead of generating one
+      # JUPYTER_TOKEN: 'token goes here'
+      # Options to manaually set user and group IDs, if needed:
+      # CHOWN_HOME: 'yes'
+      # CHOWN_HOME_OPTS: -R
+      # NB_UID: 1000
+      # NB_GID: 1000
+    # user: 'root'
