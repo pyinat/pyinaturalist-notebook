@@ -1,9 +1,14 @@
 name: Publish Docker image
 
 on:
+  # Run if triggered by post-release step from pyinaturalist
   repository_dispatch:
     types: [post-release]
   workflow_dispatch:
+  # Run if Dockerfile is updated
+  push:
+    paths:
+      - 'Dockerfile'
 
 jobs:
   deploy:

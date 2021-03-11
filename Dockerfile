@@ -1,7 +1,8 @@
 FROM jupyter/scipy-notebook
 USER root
 
-# Install some more conda packages useful for data exploration & visualization
+# Install packages needed to run all pyinaturalist example notebooks,
+# and other packages useful for data exploration & visualization
 RUN \
     conda install --quiet --yes \
         altair \
@@ -15,7 +16,6 @@ RUN \
         rich \
         requests \
         unidecode \
-        vega-datasets \
         xarray \
         'pip>=21' && \
     conda clean --all -f -y && \
@@ -24,7 +24,8 @@ RUN \
         altair-saver \
         gpxpy \
         pyinaturalist \
-        requests-cache && \
+        requests-cache \
+        vega-datasets && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
