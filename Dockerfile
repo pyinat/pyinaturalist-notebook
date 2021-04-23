@@ -12,9 +12,12 @@ RUN \
         geoviews \
         geopandas \
         plotly \
+        pyarrow \
         python-dateutil \
-        rich \
+        python-forge \
         requests \
+        'requests-cache>=0.6' \
+        rich \
         unidecode \
         xarray \
         'pip>=21' && \
@@ -24,7 +27,6 @@ RUN \
         altair-saver \
         gpxpy \
         pyinaturalist \
-        requests-cache \
         vega-datasets && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
