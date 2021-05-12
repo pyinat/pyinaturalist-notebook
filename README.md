@@ -25,7 +25,7 @@ Notes:
   in the Jupyter docs for more general info and examples.
 
 ## Links
-* [Docker Hub](https://hub.docker.com/repository/docker/jwcook9/inaturalist-notebook)
+* [Docker Hub](https://hub.docker.com/r/jwcook9/inaturalist-notebook)
 * [Pyinaturalist repo](https://github.com/niconoe/pyinaturalist)
 * [Pyinaturalist documentation](https://pyinaturalist.readthedocs.io)
 * [Example notebooks](https://github.com/niconoe/pyinaturalist/tree/master/examples)
