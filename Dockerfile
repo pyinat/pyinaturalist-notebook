@@ -13,10 +13,8 @@ RUN \
         geopandas \
         plotly \
         pyarrow \
-        python-dateutil \
-        python-forge \
-        requests \
-        'requests-cache>=0.6' \
+        pyinaturalist \
+        requests-cache \
         rich \
         unidecode \
         xarray \
@@ -26,7 +24,6 @@ RUN \
     pip install \
         altair-saver \
         gpxpy \
-        pyinaturalist \
         vega-datasets && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
