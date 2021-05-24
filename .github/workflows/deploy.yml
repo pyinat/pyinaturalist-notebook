@@ -27,9 +27,9 @@ jobs:
           context: .
           pull: true
           push: true
-          cache-from: type=registry,ref=jwcook9/inaturalist-notebook:latest
+          cache-from: type=registry,ref=jxcook/pyinaturalist-notebook:latest
           cache-to: type=inline
-          tags: jwcook9/inaturalist-notebook:latest
+          tags: jxcook/pyinaturalist-notebook:latest
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
             org.opencontainers.image.created=${{ steps.prep.outputs.created }}

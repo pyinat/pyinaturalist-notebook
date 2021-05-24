@@ -6,12 +6,12 @@ for working with [iNaturalist](https://www.inaturalist.org) data, which adds
 
 ## Usage
 ```bash
-docker pull jwcook9/inaturalist-notebook
+docker pull jxcook/pyinaturalist-notebook
 docker run -itd \
     --name jupyter-inat \
     --publish 8888:8888 \
     --volume $(pwd):/home/jovyan/work \
-    jwcook9/inaturalist-notebook
+    jxcook/pyinaturalist-notebook
 
 # Show a link to the running notebook, including the access token
 docker exec jupyter-inat jupyter notebook list
@@ -25,7 +25,7 @@ Notes:
   in the Jupyter docs for more general info and examples.
 
 ## Links
-* [Docker Hub](https://hub.docker.com/r/jwcook9/inaturalist-notebook)
+* [Docker Hub](https://hub.docker.com/r/jxcook/pyinaturalist-notebook)
 * [Pyinaturalist repo](https://github.com/niconoe/pyinaturalist)
 * [Pyinaturalist documentation](https://pyinaturalist.readthedocs.io)
 * [Example notebooks](https://github.com/niconoe/pyinaturalist/tree/master/examples)

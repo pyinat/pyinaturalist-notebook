@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   jupyter:
-    container_name: inaturalist-notebook
+    container_name: jxcook/pyinaturalist-notebook
     build:
       context: .
       network: host
