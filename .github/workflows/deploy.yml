@@ -10,6 +10,10 @@ on:
     paths:
       - 'Dockerfile'
 
+# TODO: Set pyinaturalist version automatically
+env:
+  PYINATURALIST_VERSION: '0.13.0'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,6 +25,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+      - id: vars
+        run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
       - name: Build and publish image
         uses: docker/build-push-action@v2
         with:
@@ -29,7 +35,10 @@ jobs:
           push: true
           cache-from: type=registry,ref=jxcook/pyinaturalist-notebook:latest
           cache-to: type=inline
-          tags: jxcook/pyinaturalist-notebook:latest
+          tags: |
+            jxcook/pyinaturalist-notebook:latest
+            jxcook/pyinaturalist-notebook:${{ steps.vars.outputs.short_sha }}
+            jxcook/pyinaturalist-notebook:${{ env.PYINATURALIST_VERSION }}
           labels: |
             org.opencontainers.image.source=${{ github.event.repository.html_url }}
             org.opencontainers.image.created=${{ steps.prep.outputs.created }}
