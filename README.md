@@ -1,4 +1,6 @@
 # pyinaturalist-notebook
+[![Run with Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/niconoe/pyinaturalist/main?filepath=examples)
+
 This is a simple extension of the Jupyter notebook server
 ([jupyter/scipy-notebook](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-scipy-notebook))
 for working with [iNaturalist](https://www.inaturalist.org) data, which adds
