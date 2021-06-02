@@ -2,11 +2,12 @@ version: '3.7'
 
 services:
   jupyter:
-    container_name: jxcook/pyinaturalist-notebook
-    build:
-      context: .
-      network: host
     container_name: jupyter
+    image: jxcook/pyinaturalist-notebook
+    # Or, to build the image locally instead of using the version on Docker Hub:
+    # build:
+    #   context: .
+    #   network: host
     ports:
       - 8888:8888
     volumes:

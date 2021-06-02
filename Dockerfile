@@ -15,6 +15,7 @@ RUN \
         plotly \
         pyarrow \
         pyinaturalist \
+        # pyinaturalist-convert \  # TODO: Add after pyinaturalist 0.14 is released
         pytables \
         requests-cache \
         rich \
@@ -25,11 +26,9 @@ RUN \
         'pip>=21' && \
     conda clean --all -f -y && \
     # Install any non-conda pip packages last
-    # TODO: Publish pyinaturalist-convert on conda-forge
     pip install \
         altair-saver \
         gpxpy \
-        pyinaturalist-convert \
         vega-datasets && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
