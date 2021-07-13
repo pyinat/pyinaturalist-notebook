@@ -12,6 +12,7 @@ RUN \
         geoviews \
         geopandas \
         openpyxl \
+        pillow \
         plotly \
         pyarrow \
         pyinaturalist \
@@ -29,6 +30,7 @@ RUN \
     pip install \
         altair-saver \
         gpxpy \
+        ipyplot \
         vega-datasets && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
