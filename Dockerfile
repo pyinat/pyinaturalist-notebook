@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:notebook-6.3.0
+FROM jupyter/scipy-notebook:notebook-6.4.0
 USER root
 
 # Install packages needed to run all pyinaturalist example notebooks,
@@ -16,7 +16,6 @@ RUN \
         plotly \
         pyarrow \
         pyinaturalist \
-        # pyinaturalist-convert \  # TODO: Add after pyinaturalist 0.14 is released
         pytables \
         requests-cache \
         rich \
@@ -31,6 +30,8 @@ RUN \
         altair-saver \
         gpxpy \
         ipyplot \
+        # TODO: Publish pyinaturalist-convert on conda-forge
+        pyinaturalist-convert \
         vega-datasets && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"

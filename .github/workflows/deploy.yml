@@ -12,7 +12,7 @@ on:
 
 # TODO: Set pyinaturalist version automatically
 env:
-  PYINATURALIST_VERSION: '0.13.0'
+  PYINATURALIST_VERSION: '0.14.0'
 
 jobs:
   deploy:
