@@ -4,7 +4,7 @@ services:
   jupyter:
     container_name: jupyter
     image: jxcook/pyinaturalist-notebook
-    # Or, to build the image locally instead of using the version on Docker Hub:
+    # Or, to build the image locally:
     # build:
     #   context: .
     #   network: host
@@ -18,12 +18,8 @@ services:
       # Optional: mount a local Jupyter config dir
       # - ${HOME}/.jupyter:/home/jovyan/.jupyter
     restart: unless-stopped
-    # environment:
-      # Set any value here to use as a token instead of generating one
+    environment:
+      # Enable JupyterLab (comment out to use classic notebook)
+      JUPYTER_ENABLE_LAB: 'yes'
+      # Set any value here to use as a token instead of generating a new one
       # JUPYTER_TOKEN: 'token goes here'
-      # Options to manaually set user and group IDs, if needed:
-      # CHOWN_HOME: 'yes'
-      # CHOWN_HOME_OPTS: -R
-      # NB_UID: 1000
-      # NB_GID: 1000
-    # user: 'root'

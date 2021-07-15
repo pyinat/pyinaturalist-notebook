@@ -19,9 +19,7 @@ pyinaturalist-convert = {extras = ["all"], version = ">=0.1.0"}
 requests-cache = "^0.7.1"
 vega-datasets = ">=0.9"
 xarray = ">=0.18"
-
-[tool.poetry.dev-dependencies]
-docker-compose = ">=1.29"
+websocket-client = "^1.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

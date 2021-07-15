@@ -22,6 +22,7 @@ RUN \
     && conda clean -yaf \
     && python install-poetry.py --uninstall -y \
     && rm poetry.lock pyproject.toml install-poetry.py \
+    && echo 'Fixing file permissions' \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
 
