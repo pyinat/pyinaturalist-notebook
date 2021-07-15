@@ -1,40 +1,29 @@
 FROM jupyter/scipy-notebook:notebook-6.4.0
 USER root
 
-# Install packages needed to run all pyinaturalist example notebooks,
-# and other packages useful for data exploration & visualization
+ENV PATH="/home/$NB_USER/.local/bin:$PATH" \
+    POETRY_INSTALLER="https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py" \
+    POETRY_VIRTUALENVS_CREATE=false \
+    VIRTUAL_ENV="$CONDA_DIR"
+COPY poetry.lock pyproject.toml ./
+
 RUN \
-    conda install --quiet --yes \
-        altair \
-        beautifulsoup4 \
-        dash \
-        gdal \
-        geoviews \
-        geopandas \
-        openpyxl \
-        pillow \
-        plotly \
-        pyarrow \
-        pyinaturalist \
-        pytables \
-        requests-cache \
-        rich \
-        tablib[all] \
-        unidecode \
-        xarray \
-        xmltodict \
-        'pip>=21' && \
-    conda clean --all -f -y && \
-    # Install any non-conda pip packages last
-    pip install \
-        altair-saver \
-        gpxpy \
-        ipyplot \
-        # TODO: Publish pyinaturalist-convert on conda-forge
-        pyinaturalist-convert \
-        vega-datasets && \
-    fix-permissions "${CONDA_DIR}" && \
-    fix-permissions "/home/${NB_USER}"
+    # Use conda to install geospatial libraries (due to binary dependencies)
+    conda config --set channel_priority strict \
+    && conda install -yq -c conda-forge \
+    'gdal==3.2.1' \
+    'geoviews==1.9.1' \
+    'geopandas==0.9.0' \
+    # Use poetry to install all other packages from lockfile
+    && wget $POETRY_INSTALLER \
+    && python install-poetry.py -y \
+    && poetry install -v --no-dev \
+    # Cleanup
+    && conda clean -yaf \
+    && python install-poetry.py --uninstall -y \
+    && rm poetry.lock pyproject.toml install-poetry.py \
+    && fix-permissions "${CONDA_DIR}" \
+    && fix-permissions "/home/${NB_USER}"
 
 USER $NB_UID
 WORKDIR $HOME
