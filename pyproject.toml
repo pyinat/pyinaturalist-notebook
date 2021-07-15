@@ -10,16 +10,20 @@ python = "^3.8"
 altair = ">=4.1"
 altair-saver = ">=0.5"
 beautifulsoup4 = ">=4.0"
+black = ">=21.6b0"
 dash = ">=1.21"
 ipyplot = ">=1.1"
+isort = ">=5.9.2"
+jupyterlab-code-formatter = "^1.4.10"
+jupyterlab-geojson = "^3.1.2"
 pillow = ">=8.3"
 plotly = ">=5.1"
 pyinaturalist =  {extras = ["all"], version = "~=0.14.0"}
 pyinaturalist-convert = {extras = ["all"], version = ">=0.1.0"}
 requests-cache = "^0.7.1"
 vega-datasets = ">=0.9"
-xarray = ">=0.18"
 websocket-client = "^1.1.0"
+xarray = ">=0.18"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

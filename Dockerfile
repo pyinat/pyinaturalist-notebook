@@ -1,10 +1,13 @@
 FROM jupyter/scipy-notebook:notebook-6.4.0
 USER root
 
-ENV PATH="/home/$NB_USER/.local/bin:$PATH" \
+ENV JUPYTER_SETTINGS="/home/$NB_USER/.jupyter/lab/user-settings" \
+    PATH="/home/$NB_USER/.local/bin:$PATH" \
     POETRY_INSTALLER="https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py" \
     POETRY_VIRTUALENVS_CREATE=false \
     VIRTUAL_ENV="$CONDA_DIR"
+RUN mkdir -p $JUPYTER_SETTINGS
+COPY user-settings/ $JUPYTER_SETTINGS/
 COPY poetry.lock pyproject.toml ./
 
 RUN \

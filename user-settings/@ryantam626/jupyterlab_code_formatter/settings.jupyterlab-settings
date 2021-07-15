@@ -1,0 +1,10 @@
+{
+    "black": {
+        "line_length": 100,
+        "string_normalization": false
+    },
+    "isort": {
+        "line_length": 100
+    },
+    "formatOnSave": true
+}
