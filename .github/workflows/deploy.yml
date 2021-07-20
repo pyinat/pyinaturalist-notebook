@@ -1,45 +1,85 @@
 name: Publish Docker image
 
+# Run if triggered by upstream release, if Dockerfile is updated, or if manually triggered
 on:
-  # Run if triggered by post-release step from pyinaturalist
   repository_dispatch:
     types: [post-release]
-  workflow_dispatch:
-  # Run if Dockerfile is updated
   push:
     paths:
       - 'Dockerfile'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Pyinaturalist version to build'
+        required: false
+        default: 'latest'
 
-# TODO: Set pyinaturalist version automatically
 env:
-  PYINATURALIST_VERSION: '0.14.0'
+  IMAGE_NAME: jxcook/pyinaturalist-notebook
+  PACKAGE_NAME: pyinaturalist
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+
+      # Initial setup + login
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
       - uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-      - id: vars
-        run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
+
+      # Determine package version to install
+      - name: Check if we should use the latest package version 
+        id: check_latest
+        run: |
+          IS_LATEST=${{ (github.event.inputs.version || 'latest') == 'latest' }}
+          echo ${IS_LATEST}
+          echo "::set-output name=is_latest::${IS_LATEST}"
+      - name: Get latest PyPI package version
+        id: pypi
+        if: steps.check_latest.outputs.is_latest == 'true'
+        run: |
+          pip install packaging
+          PYPI_VERSION=$(python ${GITHUB_WORKSPACE}/pypi_version.py ${{ env.PACKAGE_NAME }})
+          echo "Version:" ${PYPI_VERSION}
+          echo "::set-output name=version::${PYPI_VERSION}"
+          
+      # Set Docker tags
+      - name: Set Docker tags
+        id: meta
+        uses: docker/metadata-action@v3
+        env:
+          package_version: ${{ steps.pypi.outputs.version || github.event.inputs.version }}
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          flavor: latest=${{ steps.check_latest.outputs.is_latest }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+            type=sha,prefix=,format=short
+            type=semver,pattern={{version}},value=${{ env.package_version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.package_version }}
+            type=semver,pattern={{major}},value=${{ env.package_version }}
+
+      # Build and publish image
       - name: Build and publish image
         uses: docker/build-push-action@v2
+        env:
+          package_version: ${{ steps.pypi.outputs.version || github.event.inputs.version }}
         with:
           context: .
           pull: true
           push: true
-          cache-from: type=registry,ref=jxcook/pyinaturalist-notebook:latest
+          build-args: PACKAGE_VERSION=${{ env.package_version }}
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:latest
           cache-to: type=inline
-          tags: |
-            jxcook/pyinaturalist-notebook:latest
-            jxcook/pyinaturalist-notebook:${{ steps.vars.outputs.short_sha }}
-            jxcook/pyinaturalist-notebook:${{ env.PYINATURALIST_VERSION }}
-          labels: |
-            org.opencontainers.image.source=${{ github.event.repository.html_url }}
-            org.opencontainers.image.created=${{ steps.prep.outputs.created }}
-            org.opencontainers.image.revision=${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
