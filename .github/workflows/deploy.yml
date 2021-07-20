@@ -35,49 +35,41 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
-      # Determine package version to install
-      - name: Check if we should use the latest package version 
-        id: check_latest
-        run: |
-          IS_LATEST=${{ (github.event.inputs.version || 'latest') == 'latest' }}
-          echo ${IS_LATEST}
-          echo "::set-output name=is_latest::${IS_LATEST}"
-      - name: Get latest PyPI package version
+      # Determine package version to install (either specified version or latest)
+      - name: Set PyPI package version
         id: pypi
-        if: steps.check_latest.outputs.is_latest == 'true'
         run: |
           pip install packaging
+          IS_LATEST=${{ (github.event.inputs.version || 'latest') == 'latest' }}
           PYPI_VERSION=$(python ${GITHUB_WORKSPACE}/pypi_version.py ${{ env.PACKAGE_NAME }})
-          echo "Version:" ${PYPI_VERSION}
-          echo "::set-output name=version::${PYPI_VERSION}"
+          BUILD_VERSION=$(test ${IS_LATEST}=true && echo $PYPI_VERSION || echo ${{ github.event.inputs.version}})
+          echo "Latest version: ${PYPI_VERSION} | Build version: ${BUILD_VERSION}"
+          echo "::set-output name=version::${BUILD_VERSION}"
+          echo "::set-output name=is_latest::${IS_LATEST}"
           
       # Set Docker tags
       - name: Set Docker tags
         id: meta
         uses: docker/metadata-action@v3
-        env:
-          package_version: ${{ steps.pypi.outputs.version || github.event.inputs.version }}
         with:
           images: ${{ env.IMAGE_NAME }}
-          flavor: latest=${{ steps.check_latest.outputs.is_latest }}
+          flavor: latest=${{ steps.pypi.outputs.is_latest }}
           tags: |
             type=ref,event=branch
             type=ref,event=tag
             type=sha,prefix=,format=short
-            type=semver,pattern={{version}},value=${{ env.package_version }}
-            type=semver,pattern={{major}}.{{minor}},value=${{ env.package_version }}
-            type=semver,pattern={{major}},value=${{ env.package_version }}
+            type=semver,pattern={{version}},value=${{ steps.pypi.outputs.version }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ steps.pypi.outputs.version }}
+            type=semver,pattern={{major}},value=${{ steps.pypi.outputs.version }}
 
       # Build and publish image
       - name: Build and publish image
         uses: docker/build-push-action@v2
-        env:
-          package_version: ${{ steps.pypi.outputs.version || github.event.inputs.version }}
         with:
           context: .
           pull: true
           push: true
-          build-args: PACKAGE_VERSION=${{ env.package_version }}
+          build-args: PACKAGE_VERSION=${{ steps.pypi.outputs.version }}
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:latest
           cache-to: type=inline
           tags: ${{ steps.meta.outputs.tags }}
