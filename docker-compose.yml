@@ -17,6 +17,8 @@ services:
       # - /home/username/workspace:/home/jovyan/work
       # Optional: mount a local Jupyter config dir
       # - ${HOME}/.jupyter:/home/jovyan/.jupyter
+      # Optional: mount directory for cached API responses
+      # - ${HOME}/.cache:/home/jovyan/.cache
     restart: unless-stopped
     environment:
       # Enable JupyterLab (comment out to use classic notebook)

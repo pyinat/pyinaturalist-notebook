@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'Dockerfile'
+      - 'poetry.lock'
   workflow_dispatch:
     inputs:
       version:
@@ -46,7 +47,7 @@ jobs:
           echo "Latest version: ${PYPI_VERSION} | Build version: ${BUILD_VERSION}"
           echo "::set-output name=version::${BUILD_VERSION}"
           echo "::set-output name=is_latest::${IS_LATEST}"
-          
+
       # Set Docker tags
       - name: Set Docker tags
         id: meta
