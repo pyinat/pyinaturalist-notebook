@@ -21,7 +21,7 @@ plotly = ">=5.1"
 pyinaturalist-convert = {extras = ["all"], version = ">=0.1.0"}
 requests-cache = "^0.7.1"
 vega-datasets = ">=0.9"
-websocket-client = "^1.1.0"
+websocket-client = "^1.2.1"
 xarray = ">=0.18"
 
 # Specific version is optionally set via workflow variable -> Docker build arg
