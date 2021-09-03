@@ -13,6 +13,13 @@ RUN mkdir -p ${JUPYTER_SETTINGS}
 COPY user-settings/ ${JUPYTER_SETTINGS}/
 COPY poetry.lock pyproject.toml ./
 
+# Install utilities for plot & animation rendering
+RUN \
+    apt update \
+    && apt install -y imagemagick ffmpeg \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN \
     # Use conda to install geospatial libraries (due to binary dependencies)
     conda config --set channel_priority strict \
