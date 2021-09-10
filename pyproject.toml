@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyinaturalist-notebook"
-version = "0.14.0"
+version = "0.15.0"
 description = "A Jupyter notebook image for iNaturalist data exploration & visualization"
 authors = ["Jordan Cook"]
 license = "MIT"
@@ -19,8 +19,8 @@ jupyterlab-code-formatter = "^1.4.10"
 jupyterlab-geojson = "^3.1.2"
 pillow = ">=8.3"
 plotly = ">=5.1"
-pyinaturalist-convert = {extras = ["all"], version = ">=0.1.0"}
-requests-cache = "^0.7.4"
+pyinaturalist-convert = {extras = ["all"], version = ">=0.2.0"}
+requests-cache = ">=0.7.4"
 vega-datasets = ">=0.9"
 websocket-client = "^1.2.1"
 xarray = ">=0.18"

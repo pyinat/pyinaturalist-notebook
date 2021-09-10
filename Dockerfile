@@ -16,7 +16,7 @@ COPY poetry.lock pyproject.toml ./
 # Install utilities for plot & animation rendering
 RUN \
     apt update \
-    && apt install -y imagemagick ffmpeg \
+    && apt install -y imagemagick-dev ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
