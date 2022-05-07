@@ -51,7 +51,7 @@ jobs:
       # Set Docker tags
       - name: Set Docker tags
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.IMAGE_NAME }}
           flavor: latest=${{ steps.pypi.outputs.is_latest }}
