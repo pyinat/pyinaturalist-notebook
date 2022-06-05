@@ -28,6 +28,7 @@ RUN \
     'geoviews==1.9.4' \
     'geopandas==0.10.2' \
     # Use poetry to install all other packages from lockfile
+    && fix-permissions "/home/${NB_USER}" \
     && wget $POETRY_INSTALLER \
     && python install-poetry.py -y --version 1.2.0a2 \
     && poetry add "pyinaturalist@${PACKAGE_VERSION}" \
