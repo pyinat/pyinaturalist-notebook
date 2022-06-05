@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Docker build
 
 # Run if triggered by upstream release, if Dockerfile is updated, or if manually triggered
 on:

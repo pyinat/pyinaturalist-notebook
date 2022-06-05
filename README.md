@@ -1,4 +1,6 @@
 # pyinaturalist-notebook
+[![Build status](https://github.com/pyinat/pyinaturalist-notebook/actions/workflows/deploy.yml/badge.svg)](https://github.com//pyinat/pyinaturalist-notebook/actions)
+[![Docker Image Version](https://img.shields.io/docker/v/jxcook/pyinaturalist-notebook)](https://hub.docker.com/r/jxcook/pyinaturalist-notebook)
 [![Run with Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/niconoe/pyinaturalist/main?filepath=examples)
 
 This is a simple extension of the Jupyter notebook server
