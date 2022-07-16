@@ -895,7 +895,7 @@ ui-tests = ["build"]
 
 [[package]]
 name = "jupyterlab-code-formatter"
-version = "1.4.11"
+version = "1.5.0"
 description = "Code formatter for JupyterLab"
 category = "main"
 optional = false
@@ -2111,7 +2111,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5511a69a3dbfdaebe8683ce8bfc2166923e5a762057b680b2ca9f26edf4a1d7c"
+content-hash = "af91ba76a65f7b2f4af3afb64b39561ed7425537060bf7b03454c8e532259420"
 
 [metadata.files]
 altair = [
@@ -2622,8 +2622,8 @@ jupyterlab = [
     {file = "jupyterlab-3.4.3.tar.gz", hash = "sha256:e2dcc40e94366dde5de4b19e8c43ee133cf041b852d01a3625a7cf29532da49d"},
 ]
 jupyterlab-code-formatter = [
-    {file = "jupyterlab_code_formatter-1.4.11-py3-none-any.whl", hash = "sha256:4c426bc9bd2b4d270659b70863e8eea7efe39ba75f632f52ebfb587cd1a7e062"},
-    {file = "jupyterlab_code_formatter-1.4.11.tar.gz", hash = "sha256:b05f65b4b1499feeccae0d273b8fad8d37f6c8acaa32da10d4fc00dc223d2bde"},
+    {file = "jupyterlab_code_formatter-1.5.0-py3-none-any.whl", hash = "sha256:152b2551b79c1fc7d4bdad134aaade589b460bd7f8be4d280657b23588f7946b"},
+    {file = "jupyterlab_code_formatter-1.5.0.tar.gz", hash = "sha256:12ec4cfbaa780d2295a8f2e72ecad5f5e6eb6a9b39c7122de8545154bb771d07"},
 ]
 jupyterlab-geojson = [
     {file = "jupyterlab-geojson-3.2.0.tar.gz", hash = "sha256:9c1515101949b631589e3bd24d6bdd90421dd37948f9bd70879263925458b554"},
