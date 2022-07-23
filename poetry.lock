@@ -342,7 +342,7 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-test = ["flake8 (==3.7.8)", "hypothesis (==3.55.3)"]
+test = ["hypothesis (==3.55.3)", "flake8 (==3.7.8)"]
 
 [[package]]
 name = "cryptography"
@@ -753,8 +753,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-test = ["pytest", "pytest-trio", "pytest-asyncio (>=0.17)", "testpath", "trio", "async-timeout"]
-trio = ["trio", "async-generator"]
+trio = ["async-generator", "trio"]
+test = ["async-timeout", "trio", "testpath", "pytest-asyncio (>=0.17)", "pytest-trio", "pytest"]
 
 [[package]]
 name = "jinja2"
@@ -1156,7 +1156,7 @@ python-versions = ">=3.7"
 jupyter-server = ">=1.8,<2.0"
 
 [package.extras]
-test = ["pytest", "pytest-tornasync", "pytest-console-scripts"]
+test = ["pytest-console-scripts", "pytest-tornasync", "pytest"]
 
 [[package]]
 name = "numexpr"
@@ -1457,17 +1457,17 @@ tablib = ">=3.0,<4.0"
 xmltodict = {version = ">=0.12", optional = true, markers = "extra == \"dwc\" or extra == \"all\""}
 
 [package.extras]
-odp = ["boto3 (>=1.20)"]
-all = ["boto3 (>=1.20)", "geojson (>=2.5)", "gpxpy (>=1.4.2,<2.0.0)", "openpyxl (>=2.6)", "pandas (>=1.2)", "pyarrow (>=4.0)", "sqlalchemy (>=1.4.36,<2.0.0)", "tables (>=3.6)", "xmltodict (>=0.12)"]
-geojson = ["geojson (>=2.5)"]
-gpx = ["gpxpy (>=1.4.2,<2.0.0)"]
-xlsx = ["openpyxl (>=2.6)", "pandas (>=1.2)"]
-feather = ["pandas (>=1.2)", "pyarrow (>=4.0)"]
-hdf = ["pandas (>=1.2)", "tables (>=3.6)"]
-parquet = ["pandas (>=1.2)", "pyarrow (>=4.0)"]
-db = ["sqlalchemy (>=1.4.36,<2.0.0)"]
+docs = ["sphinx-panels (>=0.6.0,<0.7.0)", "sphinx-inline-tabs (>=2022.1.2b11,<2023.0.0)", "sphinx-copybutton (>=0.5)", "sphinx-automodapi (>=0.14,<0.15)", "sphinx-autodoc-typehints (>=1.17,<2.0)", "sphinx (>=4.2.0,<5.0.0)", "myst-parser (>=0.17.0,<0.18.0)", "furo (>=2022.2.14.1,<2023.0.0.0)"]
 dwc = ["xmltodict (>=0.12)"]
-docs = ["furo (>=2022.2.14.1,<2023.0.0.0)", "myst-parser (>=0.17.0,<0.18.0)", "sphinx (>=4.2.0,<5.0.0)", "sphinx-autodoc-typehints (>=1.17,<2.0)", "sphinx-automodapi (>=0.14,<0.15)", "sphinx-copybutton (>=0.5)", "sphinx-inline-tabs (>=2022.1.2b11,<2023.0.0)", "sphinx-panels (>=0.6.0,<0.7.0)"]
+all = ["xmltodict (>=0.12)", "tables (>=3.6)", "sqlalchemy (>=1.4.36,<2.0.0)", "pyarrow (>=4.0)", "pandas (>=1.2)", "openpyxl (>=2.6)", "gpxpy (>=1.4.2,<2.0.0)", "geojson (>=2.5)", "boto3 (>=1.20)"]
+hdf = ["tables (>=3.6)", "pandas (>=1.2)"]
+db = ["sqlalchemy (>=1.4.36,<2.0.0)"]
+feather = ["pyarrow (>=4.0)", "pandas (>=1.2)"]
+parquet = ["pyarrow (>=4.0)", "pandas (>=1.2)"]
+xlsx = ["pandas (>=1.2)", "openpyxl (>=2.6)"]
+gpx = ["gpxpy (>=1.4.2,<2.0.0)"]
+geojson = ["geojson (>=2.5)"]
+odp = ["boto3 (>=1.20)"]
 
 [[package]]
 name = "pyopenssl"
@@ -1650,7 +1650,7 @@ pyrate-limiter = ">=2.6.3"
 requests = ">=2.20,<3.0"
 
 [package.extras]
-docs = ["furo (==2022.3.4)", "myst-parser (>=0.17)", "sphinx (>=4.3.0,<5.0.0)", "sphinx-autodoc-typehints (>=1.17,<2.0)", "sphinx-copybutton (>=0.5)"]
+docs = ["sphinx-copybutton (>=0.5)", "sphinx-autodoc-typehints (>=1.17,<2.0)", "sphinx (>=4.3.0,<5.0.0)", "myst-parser (>=0.17)", "furo (==2022.3.4)"]
 
 [[package]]
 name = "rich"
@@ -1716,9 +1716,9 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-nativelib = ["pyobjc-framework-cocoa", "pywin32"]
-objc = ["pyobjc-framework-cocoa"]
 win32 = ["pywin32"]
+objc = ["pyobjc-framework-cocoa"]
+nativelib = ["pywin32", "pyobjc-framework-cocoa"]
 
 [[package]]
 name = "setuptools-scm"
@@ -1823,7 +1823,7 @@ executing = "*"
 pure-eval = "*"
 
 [package.extras]
-tests = ["pytest", "typeguard", "pygments", "littleutils", "cython"]
+tests = ["cython", "littleutils", "pygments", "typeguard", "pytest"]
 
 [[package]]
 name = "tables"
@@ -1898,8 +1898,8 @@ python-versions = ">=3.6"
 webencodings = ">=0.4"
 
 [package.extras]
-doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
+test = ["coverage", "pytest-isort", "pytest-flake8", "pytest-cov", "pytest"]
+doc = ["sphinx-rtd-theme", "sphinx"]
 
 [[package]]
 name = "tomli"
@@ -2069,21 +2069,21 @@ h11 = ">=0.9.0,<1"
 
 [[package]]
 name = "xarray"
-version = "2022.3.0"
+version = "2022.6.0"
 description = "N-D labeled arrays and datasets in Python"
 category = "main"
 optional = false
 python-versions = ">=3.8"
 
 [package.dependencies]
-numpy = ">=1.18"
+numpy = ">=1.19"
 packaging = ">=20.0"
-pandas = ">=1.1"
+pandas = ">=1.2"
 
 [package.extras]
-accel = ["scipy", "bottleneck", "numbagg"]
-complete = ["netcdf4", "h5netcdf", "scipy", "pydap", "zarr", "fsspec", "cftime", "rasterio", "cfgrib", "pooch", "bottleneck", "numbagg", "dask", "matplotlib", "seaborn", "nc-time-axis"]
-docs = ["netcdf4", "h5netcdf", "scipy", "pydap", "zarr", "fsspec", "cftime", "rasterio", "cfgrib", "pooch", "bottleneck", "numbagg", "dask", "matplotlib", "seaborn", "nc-time-axis", "sphinx-autosummary-accessors", "sphinx-rtd-theme", "ipython", "ipykernel", "jupyter-client", "nbsphinx", "scanpydoc"]
+accel = ["scipy", "bottleneck", "numbagg", "flox"]
+complete = ["netcdf4", "h5netcdf", "scipy", "pydap", "zarr", "fsspec", "cftime", "rasterio", "cfgrib", "pooch", "bottleneck", "numbagg", "flox", "dask", "matplotlib", "seaborn", "nc-time-axis"]
+docs = ["netcdf4", "h5netcdf", "scipy", "pydap", "zarr", "fsspec", "cftime", "rasterio", "cfgrib", "pooch", "bottleneck", "numbagg", "flox", "dask", "matplotlib", "seaborn", "nc-time-axis", "sphinx-autosummary-accessors", "sphinx-rtd-theme", "ipython", "ipykernel", "jupyter-client", "nbsphinx", "scanpydoc"]
 io = ["netcdf4", "h5netcdf", "scipy", "pydap", "zarr", "fsspec", "cftime", "rasterio", "cfgrib", "pooch"]
 parallel = ["dask"]
 viz = ["matplotlib", "seaborn", "nc-time-axis"]
@@ -3441,8 +3441,8 @@ wsproto = [
     {file = "wsproto-1.1.0.tar.gz", hash = "sha256:a2e56bfd5c7cd83c1369d83b5feccd6d37798b74872866e62616e0ecf111bda8"},
 ]
 xarray = [
-    {file = "xarray-2022.3.0-py3-none-any.whl", hash = "sha256:560f36eaabe7a989d5583d37ec753dd737357aa6a6453e55c80bb4f92291a69e"},
-    {file = "xarray-2022.3.0.tar.gz", hash = "sha256:398344bf7d170477aaceff70210e11ebd69af6b156fe13978054d25c48729440"},
+    {file = "xarray-2022.6.0-py3-none-any.whl", hash = "sha256:c052208afc3f261984049f28b962d64eb6741a7967898315642f5da85448b6b0"},
+    {file = "xarray-2022.6.0.tar.gz", hash = "sha256:1028d198493f66bb15bd35dcfdd11defd831cbee3af6589fff16f41bddd67e84"},
 ]
 xmltodict = [
     {file = "xmltodict-0.13.0-py2.py3-none-any.whl", hash = "sha256:aa89e8fd76320154a40d19a0df04a4695fb9dc5ba977cbb68ab3e4eb225e7852"},
