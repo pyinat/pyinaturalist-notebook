@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:notebook-6.4.8
+FROM jupyter/scipy-notebook:notebook-6.5.2
 USER root
 
 # Allows pyinaturalist version to optionally be set by GitHub Actions
@@ -24,13 +24,13 @@ RUN \
     # Use conda to install geospatial libraries (due to binary dependencies)
     conda config --set channel_priority strict \
     && conda install -yq -c conda-forge \
-    'gdal==3.4.1' \
-    'geoviews==1.9.4' \
-    'geopandas==0.10.2' \
+    'gdal==3.5.3' \
+    'geoviews==1.9.5' \
+    'geopandas==0.12.1' \
     # Use poetry to install all other packages from lockfile
     && fix-permissions "/home/${NB_USER}" \
     && wget $POETRY_INSTALLER \
-    && python install-poetry.py -y --version 1.2.0a2 \
+    && python install-poetry.py -y \
     && poetry add "pyinaturalist@${PACKAGE_VERSION}" \
     && poetry install -v \
     # Cleanup
@@ -38,6 +38,7 @@ RUN \
     && python install-poetry.py --uninstall -y \
     && rm poetry.lock pyproject.toml install-poetry.py \
     && conda clean -yaf || echo 'Failed to clear Conda cache' \
+    && echo 'Fixing permissions' \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
 

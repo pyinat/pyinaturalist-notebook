@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyinaturalist-notebook"
-version = "0.17.2"
+version = "0.17.3"
 description = "A Jupyter notebook image for iNaturalist data exploration & visualization"
 authors = ["Jordan Cook"]
 license = "MIT"
@@ -15,7 +15,7 @@ black = ">=22.3"
 dash = ">=1.21"
 ipyplot = ">=1.1"
 isort = ">=5.10"
-jupyterlab-code-formatter = "^1.4.10"
+jupyterlab-code-formatter = "^1.5.0"
 jupyterlab-geojson = "^3.1.2"
 pillow = ">=9.1.1"
 plotly = ">=5.1"
