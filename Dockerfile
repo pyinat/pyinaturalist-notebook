@@ -30,7 +30,7 @@ RUN \
     # Use poetry to install all other packages from lockfile
     && fix-permissions "/home/${NB_USER}" \
     && wget $POETRY_INSTALLER \
-    && python install-poetry.py -y --version 1.2.0a2 \
+    && python install-poetry.py -y \
     && poetry add "pyinaturalist@${PACKAGE_VERSION}" \
     && poetry install -v \
     # Cleanup
