@@ -16,7 +16,8 @@ on:
         default: 'latest'
 
 env:
-  IMAGE_NAME: jxcook/pyinaturalist-notebook
+  DOCKERHUB_OWNER: jxcook
+  IMAGE_NAME: pyinaturalist-notebook
   PACKAGE_NAME: pyinaturalist
 
 jobs:
@@ -53,7 +54,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.IMAGE_NAME }}
+          images: ${{ env.DOCKERHUB_OWNER }}/${{ env.IMAGE_NAME }}
           flavor: latest=${{ steps.pypi.outputs.is_latest }}
           tags: |
             type=ref,event=branch
@@ -64,15 +65,24 @@ jobs:
             type=semver,pattern={{major}},value=${{ steps.pypi.outputs.version }}
 
       # Build and publish image
-      - name: Build and publish image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          pull: true
-          push: true
-          build-args: PACKAGE_VERSION=${{ steps.pypi.outputs.version }}
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:latest
-          cache-to: type=inline
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      # - name: Build and publish image to DockerHub
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     context: .
+      #     pull: true
+      #     push: true
+      #     build-args: PACKAGE_VERSION=${{ steps.pypi.outputs.version }}
+      #     cache-from: type=registry,ref=${{ env.DOCKERHUB_OWNER }}/${{ env.IMAGE_NAME }}:latest
+      #     cache-to: type=inline
+      #     tags: ${{ steps.meta.outputs.tags }}
+      #     labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Publish image to GitHub Containers
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}
+          VERSION=${{ steps.pypi.outputs.version }}
+          docker build . --tag ${{ env.IMAGE_NAME }}
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+          test ${{ steps.pypi.outputs.is_latest }}=true && docker tag ${{ env.IMAGE_NAME }} $IMAGE_ID:latest
+          docker tag ${{ env.IMAGE_NAME }} $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
