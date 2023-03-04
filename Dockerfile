@@ -24,9 +24,9 @@ RUN \
     # Use conda to install geospatial libraries (due to binary dependencies)
     conda config --set channel_priority strict \
     && conda install -yq -c conda-forge \
-    'gdal==3.5.3' \
-    'geoviews==1.9.5' \
-    'geopandas==0.12.1' \
+    'gdal==3.6.2' \
+    'geoviews==1.9.6' \
+    'geopandas==0.12.2' \
     # Use poetry to install all other packages from lockfile
     && fix-permissions "/home/${NB_USER}" \
     && wget $POETRY_INSTALLER \
