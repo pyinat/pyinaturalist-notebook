@@ -1814,14 +1814,14 @@ test = ["check-manifest", "coverage", "jupyterlab-server[test]", "pre-commit", "
 
 [[package]]
 name = "jupyterlab-code-formatter"
-version = "1.5.3"
+version = "1.6.0"
 description = "Code formatter for JupyterLab"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "jupyterlab_code_formatter-1.5.3-py3-none-any.whl", hash = "sha256:0b003a3dbe694714403e10da2a6dd829c73cfa159e39e159eade573c49d119b7"},
-    {file = "jupyterlab_code_formatter-1.5.3.tar.gz", hash = "sha256:4a4fd3d713f4ae577df6c0b04093d958a19178ce49fb109ded7e8ae551eea780"},
+    {file = "jupyterlab_code_formatter-1.6.0-py3-none-any.whl", hash = "sha256:d8987cfd4a914ab20b893b683d07d6782fe53c9c430c57d263d9a2d0dd8c08e8"},
+    {file = "jupyterlab_code_formatter-1.6.0.tar.gz", hash = "sha256:056b0c3625db795b0c7edb08d1bf4684ed342090742a3e7e3843151241c4ea2d"},
 ]
 
 [package.dependencies]
@@ -4331,4 +4331,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "24931135d88eeea9bbca943c64137333b0967c0504ba92dde4881efa23d89d52"
+content-hash = "630932e764cacb90bc86f5f5247a7fbd061e5fa815fcc0f5c9fd35c77691753d"
