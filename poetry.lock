@@ -1603,14 +1603,14 @@ test = ["black (==22.1.0)", "blue (==0.9.1)", "coverage", "importlib-metadata", 
 
 [[package]]
 name = "jupyterlab-geojson"
-version = "3.3.1"
+version = "3.4.0"
 description = "GeoJSON renderer for JupyterLab"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.8"
 files = [
-    {file = "jupyterlab-geojson-3.3.1.tar.gz", hash = "sha256:45da6d1df8fedf8edf3fc6bdf58106d99d7b4a982df978342512b37c75393825"},
-    {file = "jupyterlab_geojson-3.3.1-py3-none-any.whl", hash = "sha256:270bd7b2f028cbd0b24ed49dbcb1c651dccc855543c1f50e430b30a41767b7bb"},
+    {file = "jupyterlab_geojson-3.4.0-py3-none-any.whl", hash = "sha256:56d9bed9253d0a3b4c6e5ae8ac0685039bfb43775cd356e4979bdf147e89dfc5"},
+    {file = "jupyterlab_geojson-3.4.0.tar.gz", hash = "sha256:cc7f6015f75f7816240402880134cd7174af64fbef010b1556071729f98a291f"},
 ]
 
 [[package]]
@@ -3881,4 +3881,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "4bea6020ab2d60c0910bc845ddbd668bc4ea30da8dff66e8f932ab573f175a76"
+content-hash = "d1899d65a1f166338f425cd89191306a4629f141aeec88f5769c85002f197b7c"

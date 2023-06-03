@@ -16,7 +16,7 @@ dash = ">=1.21"
 ipyplot = ">=1.1"
 isort = ">=5.10"
 jupyterlab-code-formatter = "^2.2.1"
-jupyterlab-geojson = "^3.1.2"
+jupyterlab-geojson = "^3.4.0"
 pillow = ">=9.1.1"
 plotly = ">=5.1"
 pyinaturalist-convert = {extras = ["all"], version = ">=0.6"}
