@@ -1,12 +1,12 @@
 # pyinaturalist-notebook
 [![Build status](https://github.com/pyinat/pyinaturalist-notebook/actions/workflows/deploy.yml/badge.svg)](https://github.com//pyinat/pyinaturalist-notebook/actions)
 [![Docker Image Version](https://img.shields.io/docker/v/jxcook/pyinaturalist-notebook)](https://hub.docker.com/r/jxcook/pyinaturalist-notebook)
-[![Run with Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/niconoe/pyinaturalist/main?filepath=examples)
+[![Run with Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pyinat/pyinaturalist/main?filepath=examples)
 
 This is a simple extension of the Jupyter notebook server
 ([jupyter/scipy-notebook](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-scipy-notebook))
 for working with [iNaturalist](https://www.inaturalist.org) data, which adds
-[pyinaturalist](https://github.com/niconoe/pyinaturalist) plus some extra packages for data exploration & visualization.
+[pyinaturalist](https://github.com/pyinat/pyinaturalist) plus some extra packages for data exploration & visualization.
 
 ## Usage
 ```bash
@@ -30,6 +30,6 @@ Notes:
 
 ## Links
 * [Docker Hub](https://hub.docker.com/r/jxcook/pyinaturalist-notebook)
-* [Pyinaturalist repo](https://github.com/niconoe/pyinaturalist)
+* [Pyinaturalist repo](https://github.com/pyinat/pyinaturalist)
 * [Pyinaturalist documentation](https://pyinaturalist.readthedocs.io)
-* [Example notebooks](https://github.com/niconoe/pyinaturalist/tree/master/examples)
+* [Example notebooks](https://github.com/pyinat/pyinaturalist/tree/main/examples)
