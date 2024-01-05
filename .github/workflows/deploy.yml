@@ -52,8 +52,8 @@ jobs:
           PYPI_VERSION=$(python ${GITHUB_WORKSPACE}/pypi_version.py ${{ env.PACKAGE_NAME }})
           BUILD_VERSION=$(test ${IS_LATEST}=true && echo $PYPI_VERSION || echo ${{ github.event.inputs.version}})
           echo "Latest version: ${PYPI_VERSION} | Build version: ${BUILD_VERSION}"
-          echo "::set-output name=version::${BUILD_VERSION}"
-          echo "::set-output name=is_latest::${IS_LATEST}"
+          echo "version=${BUILD_VERSION}" >> $GITHUB_OUTPUT
+          echo "is_latest=${IS_LATEST}" >> $GITHUB_OUTPUT
 
       # Set Docker tags
       - name: Set Docker tags
