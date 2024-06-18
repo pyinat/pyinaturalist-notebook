@@ -4,6 +4,7 @@ version = "0.19.0"
 description = "A Jupyter notebook image for iNaturalist data exploration & visualization"
 authors = ["Jordan Cook"]
 license = "MIT"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
