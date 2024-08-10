@@ -1431,13 +1431,13 @@ test = ["jupyter-server (>=2.0.0)", "pytest (>=7.0)", "pytest-jupyter[server] (>
 
 [[package]]
 name = "jupyterlab-code-formatter"
-version = "2.2.1"
+version = "3.0.1"
 description = "A JupyterLab plugin to facilitate invocation of code formatters."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "jupyterlab_code_formatter-2.2.1-py3-none-any.whl", hash = "sha256:5f196ef80d1ae53028b04425a3f1cfb008fb211b46f942701af5fdd7557b5fe1"},
-    {file = "jupyterlab_code_formatter-2.2.1.tar.gz", hash = "sha256:85322819da61f025ebc7c4a842979994fa812ad44c334fdb6ebb9ebad58dae08"},
+    {file = "jupyterlab_code_formatter-3.0.1-py3-none-any.whl", hash = "sha256:582227daea9b36d0dcb1f6ba51bf38a44abc84ab9d05288adc2e3221b7d1ac69"},
+    {file = "jupyterlab_code_formatter-3.0.1.tar.gz", hash = "sha256:6806e482673bf00f43b9d4422e6029a4899a8f706630854cebf75b497b6c7194"},
 ]
 
 [package.dependencies]
@@ -1446,7 +1446,7 @@ packaging = "*"
 
 [package.extras]
 dev = ["autopep8", "black (==22.1.0)", "blue (==0.9.1)", "click (==8.0.2)", "isort", "jupyterlab (>=3.0.0)", "rpy2", "ruff", "yapf"]
-test = ["black (==22.1.0)", "blue (==0.9.1)", "coverage", "importlib-metadata", "isort", "pytest", "pytest-asyncio", "pytest-cov", "pytest-jupyter[server] (>=0.6.0)", "yapf"]
+test = ["black (==22.1.0)", "blue (==0.9.1)", "coverage", "importlib-metadata", "isort", "pytest", "pytest-asyncio", "pytest-cov", "pytest-jupyter[server] (>=0.6.0)", "rpy2", "ruff", "yapf"]
 
 [[package]]
 name = "jupyterlab-geojson"
