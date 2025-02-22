@@ -3,10 +3,11 @@
 [![Docker Image Version](https://img.shields.io/docker/v/jxcook/pyinaturalist-notebook)](https://hub.docker.com/r/jxcook/pyinaturalist-notebook)
 [![Run with Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/pyinat/pyinaturalist/main?filepath=examples)
 
-This is a simple extension of the Jupyter notebook server
+This is an extension of the Jupyter notebook server
 ([jupyter/scipy-notebook](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-scipy-notebook))
 for working with [iNaturalist](https://www.inaturalist.org) data, which adds
-[pyinaturalist](https://github.com/pyinat/pyinaturalist) plus some extra packages for data exploration & visualization.
+[pyinaturalist](https://github.com/pyinat/pyinaturalist) and all dependencies needed for running
+[pyinaturalist example notebooks](https://pyinaturalist.readthedocs.io/en/stable/examples.html).
 
 ## Usage
 ```bash
