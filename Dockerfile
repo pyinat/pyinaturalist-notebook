@@ -22,9 +22,9 @@ RUN \
 RUN \
     conda config --set channel_priority strict \
     && conda install -yq -c conda-forge \
-    'gdal==3.10' \
-    'geoviews==1.14' \
-    'geopandas==1.0' \
+    'gdal==3.12' \
+    'geoviews==1.15' \
+    'geopandas==1.1' \
     && conda clean -yaf || echo 'Failed to clear Conda cache' \
     && fix-permissions "${CONDA_DIR}"
 
@@ -33,8 +33,8 @@ COPY uv.lock pyproject.toml ./
 RUN \
     fix-permissions "/home/${NB_USER}" \
     && curl -LsSf $UV_INSTALLER | sh \
-    && uv add "pyinaturalist@${PACKAGE_VERSION}" \
-    && uv sync \
+    && uv add --no-sync "pyinaturalist==${PACKAGE_VERSION}" \
+    && uv sync --no-install-project \
     && uv cache clean \
     && rm uv.lock pyproject.toml \
     && fix-permissions "${CONDA_DIR}" \
