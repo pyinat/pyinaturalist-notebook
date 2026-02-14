@@ -10,7 +10,6 @@ ENV JUPYTER_SETTINGS="/home/${NB_USER}/.jupyter/lab/user-settings" \
     VIRTUAL_ENV="${CONDA_DIR}"
 RUN mkdir -p ${JUPYTER_SETTINGS}
 COPY user-settings/ ${JUPYTER_SETTINGS}/
-COPY uv.lock pyproject.toml ./
 
 # Install utilities for plot & animation rendering
 RUN \
@@ -19,23 +18,25 @@ RUN \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Use conda to install geospatial libraries (due to binary dependencies)
 RUN \
-    # Use conda to install geospatial libraries (due to binary dependencies)
     conda config --set channel_priority strict \
     && conda install -yq -c conda-forge \
     'gdal==3.10' \
     'geoviews==1.14' \
     'geopandas==1.0' \
-    # Use uv to install all other packages from lockfile
-    && fix-permissions "/home/${NB_USER}" \
+    && conda clean -yaf || echo 'Failed to clear Conda cache' \
+    && fix-permissions "${CONDA_DIR}"
+
+# Install all other packages from lockfile via uv
+COPY uv.lock pyproject.toml ./
+RUN \
+    fix-permissions "/home/${NB_USER}" \
     && curl -LsSf $UV_INSTALLER | sh \
     && uv add "pyinaturalist@${PACKAGE_VERSION}" \
     && uv sync \
-    # Cleanup
     && uv cache clean \
     && rm uv.lock pyproject.toml \
-    && conda clean -yaf || echo 'Failed to clear Conda cache' \
-    && echo 'Fixing permissions' \
     && fix-permissions "${CONDA_DIR}" \
     && fix-permissions "/home/${NB_USER}"
 
