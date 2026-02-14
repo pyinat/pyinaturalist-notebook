@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - 'Dockerfile'
-      - 'poetry.lock'
+      - 'uv.lock'
   workflow_dispatch:
     inputs:
       version:
