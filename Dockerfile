@@ -33,7 +33,11 @@ COPY uv.lock pyproject.toml ./
 RUN \
     fix-permissions "/home/${NB_USER}" \
     && curl -LsSf $UV_INSTALLER | sh \
-    && uv add --no-sync "pyinaturalist==${PACKAGE_VERSION}" \
+    && if [ "${PACKAGE_VERSION}" = "latest" ]; then \
+         uv add --no-sync "pyinaturalist"; \
+       else \
+         uv add --no-sync "pyinaturalist==${PACKAGE_VERSION}"; \
+       fi \
     && uv sync --no-install-project \
     && uv cache clean \
     && rm uv.lock pyproject.toml \
