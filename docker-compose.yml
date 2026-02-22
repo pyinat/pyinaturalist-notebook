@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   jupyter:
     container_name: jupyter

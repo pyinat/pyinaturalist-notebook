@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:notebook-7.0.6
+FROM quay.io/jupyter/scipy-notebook:latest
 USER root
 
 # Allows pyinaturalist version to optionally be set by GitHub Actions
