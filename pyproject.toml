@@ -28,7 +28,3 @@ dependencies = [
     "xmltodict>=0.12",
     "pyinaturalist",
 ]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"

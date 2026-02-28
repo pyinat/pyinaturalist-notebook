@@ -7,7 +7,7 @@ ARG PACKAGE_VERSION='latest'
 ENV JUPYTER_SETTINGS="/home/${NB_USER}/.jupyter/lab/user-settings" \
     PATH="/home/${NB_USER}/.local/bin:${PATH}" \
     UV_INSTALLER="https://astral.sh/uv/install.sh" \
-    VIRTUAL_ENV="${CONDA_DIR}"
+    UV_PYTHON="${CONDA_DIR}/bin/python"
 RUN mkdir -p ${JUPYTER_SETTINGS}
 COPY user-settings/ ${JUPYTER_SETTINGS}/
 
@@ -29,16 +29,18 @@ RUN \
     && fix-permissions "${CONDA_DIR}"
 
 # Install all other packages from lockfile via uv
+# uv pip install/sync respects CONDA_PREFIX and installs into the active conda env
 COPY uv.lock pyproject.toml ./
 RUN \
     fix-permissions "/home/${NB_USER}" \
     && curl -LsSf $UV_INSTALLER | sh \
+    && uv export --no-dev --no-emit-project --frozen \
+         | uv pip install --python "${CONDA_DIR}/bin/python" -r /dev/stdin \
     && if [ "${PACKAGE_VERSION}" = "latest" ]; then \
-         uv add --no-sync "pyinaturalist"; \
+         uv pip install --python "${CONDA_DIR}/bin/python" "pyinaturalist"; \
        else \
-         uv add --no-sync "pyinaturalist==${PACKAGE_VERSION}"; \
+         uv pip install --python "${CONDA_DIR}/bin/python" "pyinaturalist==${PACKAGE_VERSION}"; \
        fi \
-    && uv sync --no-install-project \
     && uv cache clean \
     && rm uv.lock pyproject.toml \
     && fix-permissions "${CONDA_DIR}" \
